@@ -21,7 +21,6 @@ export default function Input({
       placeholder={placeholder}
       placeholderTextColor={colors.muted}
       style={styles.textInput}
-      multiline={true}
       secureTextEntry={secureTextEntry}
       value={value}
       onChangeText={onChangeText}
@@ -33,6 +32,8 @@ const styles = StyleSheet.create({
   textInput: {
     width: "100%",
     backgroundColor: colors.card,
+    borderWidth: size.border.thin,
+    borderColor: colors.border,
     borderRadius: size.radius.sm,
     paddingHorizontal: size.spacing.md,
     paddingVertical: size.spacing.md,
