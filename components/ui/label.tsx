@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
   label: {
     color: colors.text,
     fontSize: size.fontSize.xs,
-    fontWeight: "500",
-    letterSpacing: 1.2,
-    textTransform: "uppercase",
+    fontWeight: 500,
+    letterSpacing: 0.5,
   }
 });

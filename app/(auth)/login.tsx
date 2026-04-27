@@ -33,6 +33,7 @@ export default function LoginScreen() {
         
       <View style={{ alignItems: "center", gap: size.spacing.xs }}>
         <Text style={styles.heading}>Student Voice</Text>
+        <Text style={styles.text}>Please login to your account</Text>
       </View>
 
       <KeyboardAvoidingView
@@ -87,8 +88,9 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   heading: {
     fontSize: 36,
-    fontWeight: "bold",
+    fontWeight: 700,
     textAlign: "center",
+    letterSpacing: -1.5,
   },
   text: {
     color: colors.text,

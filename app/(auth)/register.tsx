@@ -35,7 +35,7 @@ export default function RegisterScreen() {
         }}
       >
         <View style={{ alignItems: "center", gap: size.spacing.xs }}>
-          <Text style={styles.heading}>Create an Account</Text>
+          <Text style={styles.heading}>Bergabung dengan Student Voice</Text>
         </View>
 
         <KeyboardAvoidingView
@@ -44,20 +44,20 @@ export default function RegisterScreen() {
           keyboardVerticalOffset={16}
         >
           <View style={{ width: "100%", gap: size.spacing.xs }}>
-            <Label>Name</Label>
-            <Input placeholder="ex: Mozarist" />
+            <Label>Nama lengkap</Label>
+            <Input placeholder="Masukkan nama lengkap Anda" />
           </View>
           <View style={{ width: "100%", gap: size.spacing.xs }}>
             <Label>Email</Label>
-            <Input placeholder="ex: mozarist@gmail.com" />
+            <Input placeholder="example@gmail.com" />
           </View>
           <View style={{ width: "100%", gap: size.spacing.xs }}>
-            <Label>Password</Label>
+            <Label>Kata sandi</Label>
             <Input placeholder="Create a password" secureTextEntry={true} />
           </View>
           <View style={{ width: "100%", gap: size.spacing.xs }}>
-            <Label>Confirm Password</Label>
-            <Input placeholder="Confirm Your Password" secureTextEntry={true} />
+            <Label>Konfirmasi kata sandi</Label>
+            <Input placeholder="Confirm your password" secureTextEntry={true} />
           </View>
         </KeyboardAvoidingView>
 
@@ -86,8 +86,9 @@ const styles = StyleSheet.create({
   heading: {
     color: colors.foreground,
     fontSize: size.fontSize["4xl"],
-    fontWeight: "bold",
+    fontWeight: 700,
     textAlign: "center",
+    letterSpacing: -1.5,
   },
   text: {
     color: colors.text,
