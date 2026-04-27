@@ -16,7 +16,7 @@ import Card from "../card";
 type PostCardProps = {
   name?: string;
   location?: string;
-  status?: string;
+  status?: string | null;
   avatarUri?: string;
   coverUri?: string;
   caption?: string;
@@ -27,10 +27,29 @@ type PostCardProps = {
   onPress?: () => void;
 };
 
+function getStatusBadgeColors(status?: string | null) {
+  const mood = status?.trim().toLowerCase();
+
+  const moodColors: Record<string, { background: string; label: string }> = {
+    senang: { background: colors.success + "24", label: colors.success },
+    sedih: { background: colors.accent + "40", label: colors.info },
+    marah: { background: colors.danger + "24", label: colors.danger },
+    tenang: { background: colors.accent3 + "40", label: colors.success },
+    terkejut: { background: colors.warning + "28", label: colors.warning },
+    takut: { background: colors.accent2 + "30", label: colors.accent2 },
+  };
+
+  if (!mood || !moodColors[mood]) {
+    return { background: "transparent", label: "transparent" };
+  }
+
+  return moodColors[mood];
+}
+
 export default function PostCard({
   name = "Username",
   location = "Location",
-  status = "Status",
+  status,
   avatarUri = "",
   coverUri = "",
   caption = "Post caption",
@@ -40,6 +59,7 @@ export default function PostCard({
   reposts = 0,
   onPress = () => {},
 }: PostCardProps) {
+  const statusBadgeColor = getStatusBadgeColors(status);
   const [liked, setLiked] = useState(false);
   const [reposted, setReposted] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
@@ -79,19 +99,22 @@ export default function PostCard({
         </View>
 
         <Badge
-          color={colors.accent + "40"}
-          labelColor={colors.info}
+          color={statusBadgeColor.background}
+          labelColor={statusBadgeColor.label}
           style={styles.statusBadge}
         >
-          {status}
+          {status ?? ""}
         </Badge>
       </View>
 
       <Image source={coverUri} style={styles.coverImage} contentFit="cover" />
 
-      <Text style={styles.caption}>{caption}</Text>
-
-      <Text style={styles.tags}>{tags.map((tag) => `#${tag}`).join("  ")}</Text>
+      <View style={styles.contentBlock}>
+        <Text style={styles.caption}>{caption}</Text>
+        <Text style={styles.tags}>
+          {tags.map((tag) => `#${tag}`).join("  ")}
+        </Text>
+      </View>
 
       <View style={styles.separator} />
 
@@ -118,7 +141,7 @@ export default function PostCard({
 }
 
 type ActionProps = {
-  icon: React.ComponentType<{ size?: number; color?: string, fill?: string }>;
+  icon: React.ComponentType<{ size?: number; color?: string; fill?: string }>;
   value?: string | number;
   onPress: () => void;
   align?: "left" | "right";
@@ -186,7 +209,7 @@ const styles = StyleSheet.create({
   locationRow: {
     alignItems: "center",
     flexDirection: "row",
-    gap: size.spacing.xs,
+    gap: size.spacing.xxs,
   },
   location: {
     color: colors.muted,
@@ -202,6 +225,9 @@ const styles = StyleSheet.create({
     borderRadius: size.radius.md,
     height: 250,
     width: "100%",
+  },
+  contentBlock: {
+    gap: size.spacing.xs,
   },
   caption: {
     color: colors.foreground,
