@@ -29,28 +29,28 @@ export default function TabLayout() {
         name="index"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <House size={28} color={color} />,
+          tabBarIcon: ({ color }) => <House size={32} strokeWidth={1.7} color={color} />,
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <Compass size={28} color={color} />,
+          tabBarIcon: ({ color }) => <Compass size={32} strokeWidth={1.7} color={color} />,
         }}
       />
       <Tabs.Screen
         name="search"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <Search size={28} color={color} />,
+          tabBarIcon: ({ color }) => <Search size={32} strokeWidth={1.7} color={color} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <CircleUser size={28} color={color} />,
+          tabBarIcon: ({ color }) => <CircleUser size={32} strokeWidth={1.7} color={color} />,
         }}
       />
     </Tabs>

@@ -38,6 +38,9 @@ export const spacing = {
   "3xl": 40,
   "4xl": 48,
   "5xl": 56,
+  "6xl": 64,
+  "7xl": 72,
+  "8xl": 80,
 };
 
 export const radius = {
