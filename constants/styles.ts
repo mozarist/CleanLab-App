@@ -5,10 +5,11 @@ import * as size from "@/constants/size";
 export const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.card,
   },
   container: {
     gap: size.spacing.md,
+    backgroundColor: colors.background,
     padding: size.spacing.lg,
     paddingBottom: size.spacing["8xl"],
   },
