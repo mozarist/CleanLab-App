@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     paddingVertical: size.spacing.lg,
     borderBottomWidth: size.border.regular,
     borderColor: colors.border,
+    zIndex: 100,
   },
   headerText: {
     fontSize: size.fontSize.xl,

@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.card,
   },
   container: {
+    flex: 1,
     gap: size.spacing.md,
     backgroundColor: colors.background,
     padding: size.spacing.lg,

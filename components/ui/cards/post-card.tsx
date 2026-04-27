@@ -7,6 +7,7 @@ import {
     MessageCircle,
     Repeat2,
     Send,
+    User,
 } from "lucide-react-native";
 import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -15,11 +16,11 @@ import Card from "../card";
 
 type PostCardProps = {
   name?: string;
-  location?: string;
+  location?: string | null;
   status?: string | null;
-  avatarUri?: string;
-  coverUri?: string;
-  caption?: string;
+  avatarUri?: string | null;
+  coverUri?: string | null;
+  caption?: string | null;
   tags?: string[];
   likes?: number;
   comments?: number;
@@ -34,7 +35,7 @@ function getStatusBadgeColors(status?: string | null) {
     senang: { background: colors.success + "24", label: colors.success },
     sedih: { background: colors.accent + "40", label: colors.info },
     marah: { background: colors.danger + "24", label: colors.danger },
-    tenang: { background: colors.accent3 + "40", label: colors.success },
+    tenang: { background: colors.accent + "40", label: colors.info },
     terkejut: { background: colors.warning + "28", label: colors.warning },
     takut: { background: colors.accent2 + "30", label: colors.accent2 },
   };
@@ -47,13 +48,13 @@ function getStatusBadgeColors(status?: string | null) {
 }
 
 export default function PostCard({
-  name = "Username",
-  location = "Location",
+  name = "anonymous user",
+  location = "Unknown location",
   status,
   avatarUri = "",
   coverUri = "",
   caption = "Post caption",
-  tags = ["Post", "Tag"],
+  tags = [],
   likes = 0,
   comments = 0,
   reposts = 0,
@@ -64,6 +65,7 @@ export default function PostCard({
   const [reposted, setReposted] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
   const [repostCount, setRepostCount] = useState(reposts);
+  const hasAvatar = !!avatarUri?.trim();
 
   function handleLikePress() {
     setLiked((previous) => {
@@ -87,7 +89,17 @@ export default function PostCard({
     <Card>
       <View style={styles.headerRow}>
         <View style={styles.profileBlock}>
-          <Image source={avatarUri} style={styles.avatar} contentFit="cover" />
+          {hasAvatar ? (
+            <Image
+              source={avatarUri}
+              style={styles.avatar}
+              contentFit="cover"
+            />
+          ) : (
+            <View style={styles.avatarFallback}>
+              <User size={18} color={colors.muted} />
+            </View>
+          )}
 
           <View style={styles.identityBlock}>
             <Text style={styles.name}>{name}</Text>
@@ -192,6 +204,14 @@ const styles = StyleSheet.create({
     gap: size.spacing.sm,
   },
   avatar: {
+    backgroundColor: colors.muted + "20",
+    borderRadius: size.radius.full,
+    height: size.avatarSize.md,
+    aspectRatio: 1,
+  },
+  avatarFallback: {
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: colors.muted + "20",
     borderRadius: size.radius.full,
     height: size.avatarSize.md,
