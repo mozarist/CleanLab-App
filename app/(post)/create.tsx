@@ -8,6 +8,7 @@ import Button from "@/components/ui/button";
 import { colors } from "@/constants/color";
 import * as size from "@/constants/size";
 import { SquarePen } from "lucide-react-native";
+import Input from "@/components/ui/text-input";
 
 export default function CreatePostScreen() {
   return (
@@ -15,9 +16,9 @@ export default function CreatePostScreen() {
       <Header2 title="Postingan baru" />
 
       <ScrollView contentContainerStyle={styles.container}>
-        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={100}>
           <CreatePostCard />
-        </KeyboardAvoidingView>
+
+        <Input placeholder="Lokasi (Opsional)" />
       </ScrollView>
 
       <View style={styles.bottomTab}>
