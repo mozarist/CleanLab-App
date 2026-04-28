@@ -45,7 +45,7 @@ export default function CreatePostScreen() {
                   label={mood.label}
                   onPress={() => setSelectedMood(mood.label)}
                   rounded={size.radius.full}
-                  color={isActive ? `${mood.color}20` : colors.secondary}
+                  color={isActive ? `${mood.color}14` : colors.secondary}
                   labelColor={isActive ? mood.color : colors.foreground}
                   OutlineColor={isActive ? mood.color : colors.border}
                   style={localStyles.moodButton}
