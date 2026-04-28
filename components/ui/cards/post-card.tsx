@@ -86,7 +86,7 @@ export default function PostCard({
   }
 
   return (
-    <Card>
+    <Card onPress={onPress}>
       <View style={styles.headerRow}>
         <View style={styles.profileBlock}>
           {hasAvatar ? (
@@ -101,7 +101,7 @@ export default function PostCard({
             </View>
           )}
 
-          <View style={styles.identityBlock}>
+          <View>
             <Text style={styles.name}>{name}</Text>
             <View style={styles.locationRow}>
               <MapPin size={12} color={colors.muted} />
@@ -217,12 +217,9 @@ const styles = StyleSheet.create({
     height: size.avatarSize.md,
     aspectRatio: 1,
   },
-  identityBlock: {
-    gap: size.spacing.xxs,
-  },
   name: {
     color: colors.primary,
-    fontSize: size.fontSize.md,
+    fontSize: size.fontSize.sm,
     fontWeight: 500,
     letterSpacing: -0.3,
   },
@@ -234,7 +231,7 @@ const styles = StyleSheet.create({
   location: {
     color: colors.muted,
     fontSize: size.fontSize.xs,
-    fontWeight: 500,
+    fontWeight: 400,
   },
   statusBadge: {
     paddingHorizontal: size.spacing.md,
