@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
 import { colors } from "@/constants/color";
 import * as size from "@/constants/size";
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   safeAreaView: {
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.card,
   },
   container: {
-    flex: 1,
+    flexGrow: 1,
     gap: size.spacing.md,
     backgroundColor: colors.background,
     padding: size.spacing.lg,
@@ -40,6 +40,6 @@ export const styles = StyleSheet.create({
     paddingVertical: size.spacing.md,
     borderTopWidth: size.border.regular,
     borderColor: colors.border,
-    zIndex: 2
+    zIndex: 2,
   },
 });
