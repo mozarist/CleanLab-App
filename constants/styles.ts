@@ -14,4 +14,21 @@ export const styles = StyleSheet.create({
     padding: size.spacing.lg,
     paddingBottom: size.spacing["8xl"],
   },
+  header: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.card,
+      paddingHorizontal: size.spacing.xl,
+      paddingVertical: size.spacing.lg,
+      borderBottomWidth: size.border.regular,
+      borderColor: colors.border,
+      zIndex: 100,
+    },
+    headerText: {
+      fontSize: size.fontSize.xl,
+      fontWeight: 700,
+      letterSpacing: -1,
+      color: colors.foreground,
+    },
 });
