@@ -81,5 +81,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: size.fontSize.md,
     fontWeight: "500",
+    textTransform: "capitalize",
+    paddingHorizontal: size.spacing.xxs,
   },
 });
