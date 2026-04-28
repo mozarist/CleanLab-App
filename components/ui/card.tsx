@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: size.spacing.md,
     backgroundColor: colors.card,
-    borderRadius: size.radius.lg,
+    borderRadius: size.radius.xl,
     padding: size.spacing.lg,
     borderWidth: 1,
     borderColor: colors.border,
