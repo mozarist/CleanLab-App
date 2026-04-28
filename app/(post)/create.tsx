@@ -11,12 +11,12 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const moods = [
-  { label: "senang", color: colors.success },
-  { label: "sedih", color: colors.info },
-  { label: "marah", color: colors.danger },
-  { label: "tenang", color: colors.accent },
-  { label: "terkejut", color: colors.warning },
-  { label: "takut", color: colors.accent2 },
+  { label: "senang", color: colors.happy },
+  { label: "sedih", color: colors.sad },
+  { label: "marah", color: colors.angry },
+  { label: "tenang", color: colors.chill },
+  { label: "terkejut", color: colors.surprised },
+  { label: "takut", color: colors.scared },
 ];
 
 export default function CreatePostScreen() {

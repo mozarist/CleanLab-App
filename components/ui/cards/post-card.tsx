@@ -32,12 +32,12 @@ function getStatusBadgeColors(status?: string | null) {
   const mood = status?.trim().toLowerCase();
 
   const moodColors: Record<string, { background: string; label: string }> = {
-    senang: { background: colors.success + "24", label: colors.success },
-    sedih: { background: colors.accent + "40", label: colors.info },
-    marah: { background: colors.danger + "24", label: colors.danger },
-    tenang: { background: colors.accent + "40", label: colors.info },
-    terkejut: { background: colors.warning + "28", label: colors.warning },
-    takut: { background: colors.accent2 + "30", label: colors.accent2 },
+    senang: { background: colors.happy + "20", label: colors.happy },
+    sedih: { background: colors.sad + "24", label: colors.sad },
+    marah: { background: colors.angry + "20", label: colors.angry },
+    tenang: { background: colors.chill + "20", label: colors.chill },
+    terkejut: { background: colors.surprised + "28", label: colors.surprised },
+    takut: { background: colors.scared + "30", label: colors.scared },
   };
 
   if (!mood || !moodColors[mood]) {

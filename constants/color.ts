@@ -15,5 +15,11 @@ export const colors = {
   success: "#0cb653",
   warning: "#FE9A00",
   danger: "#dd0d0d",
+  happy: "#ee790b",
+  sad: "#3544cc",
+  angry: "#f0262d",
+  chill: "#1a92a1",
+  surprised: "#bd0fae",
+  scared: "#6c4a94",
   info: "#6198ff",
 };
