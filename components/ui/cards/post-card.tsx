@@ -244,15 +244,15 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   contentBlock: {
-    gap: size.spacing.xs,
+    gap: size.spacing.xxs,
   },
   caption: {
     color: colors.foreground,
-    fontSize: size.fontSize.lg,
+    fontSize: size.fontSize.md,
     fontWeight: 500,
   },
   tags: {
-    color: colors.info,
+    color: colors.text,
     fontSize: size.fontSize.sm,
     fontWeight: 500,
     letterSpacing: -0.3,
