@@ -2,12 +2,12 @@ import { colors } from "@/constants/color";
 import * as size from "@/constants/size";
 import { Image } from "expo-image";
 import {
-    Heart,
-    MapPin,
-    MessageCircle,
-    Repeat2,
-    Send,
-    User,
+  Heart,
+  MapPin,
+  MessageCircle,
+  Repeat2,
+  Send,
+  User,
 } from "lucide-react-native";
 import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -119,7 +119,7 @@ export default function PostCard({
         </Badge>
       </View>
 
-      <Image source={coverUri} style={styles.coverImage} contentFit="cover" />
+      {coverUri && (<Image source={coverUri} style={styles.coverImage} contentFit="cover" />)}
 
       <View style={styles.contentBlock}>
         <Text style={styles.caption}>{caption}</Text>
