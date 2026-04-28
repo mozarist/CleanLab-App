@@ -5,7 +5,7 @@ import Input from "@/components/ui/text-input";
 import { colors } from "@/constants/color";
 import * as size from "@/constants/size";
 import { styles } from "@/constants/styles";
-import { Hash, MapPin, SquarePen } from "lucide-react-native";
+import { Hash, MapPin, SmilePlus, SquarePen } from "lucide-react-native";
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -30,7 +30,10 @@ export default function CreatePostScreen() {
         <CreatePostCard />
 
         <View style={localStyles.moodSection}>
-          <Text style={localStyles.moodTitle}>Pilih suasana hati</Text>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: size.spacing.sm }}>
+            <SmilePlus size={size.iconSize.md} color={colors.foreground} fill={colors.accent} />
+            <Text style={localStyles.moodTitle}>Vibe Check</Text>
+          </View>
 
           <View style={localStyles.moodGrid}>
             {moods.map((mood) => {
