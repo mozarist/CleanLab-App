@@ -16,7 +16,7 @@ export default function Input({
   placeholder,
   secureTextEntry,
   value,
-  radius = size.radius.sm,
+  radius = size.radius.full,
   icon,
   onChangeText,
 }: TextInputProps) {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.card,
     borderWidth: size.border.thin,
     borderColor: colors.border,
-    borderRadius: size.radius.sm,
+    borderRadius: size.radius.full,
     paddingHorizontal: size.spacing.lg,
     paddingVertical: size.spacing.xs,
   },

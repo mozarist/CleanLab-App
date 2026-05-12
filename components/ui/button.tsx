@@ -27,7 +27,7 @@ type ButtonProps = {
 export default function Button({
   label,
   color = colors.primary,
-  rounded = size.radius.sm,
+  rounded = size.radius.full,
   labelColor = colors.primaryForeground,
   labelSize = "md",
   OutlineColor = "transparent",
