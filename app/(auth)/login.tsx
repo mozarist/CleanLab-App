@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
+import { Alert, KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
 import Button from "@/components/ui/button";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "@/components/ui/text-input";
@@ -7,8 +7,53 @@ import { colors } from "@/constants/color";
 import * as size from "@/constants/size";
 import Label from "@/components/ui/label";
 import { WashingMachine } from "lucide-react-native";
+import { login } from "@/services/auth";
+import { useState } from "react";
 
 export default function LoginScreen() {
+  const [email, setEmail] =
+    useState("");
+
+  const [password, setPassword] =
+    useState("");
+
+  const [loading, setLoading] =
+    useState(false);
+
+  async function handleLogin() {
+    try {
+
+      setLoading(true);
+
+      const data =
+        await login(
+          email,
+          password
+        );
+
+      console.log(data);
+
+      Alert.alert(
+        "Success",
+        "Logged in"
+      );
+
+    } catch (error) {
+
+      console.log(error);
+
+      Alert.alert(
+        "Error",
+        "Login failed"
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -43,7 +88,11 @@ export default function LoginScreen() {
       >
         <View style={{ width: "100%", gap: size.spacing.xs }}>
           <Label>Email</Label>
-          <Input placeholder="Masukan email yang sudah terdaftar" />
+          <Input
+            placeholder="Masukan email yang sudah terdaftar"
+            value={email}
+            onChangeText={setEmail}
+          />
         </View>
         <View style={{ width: "100%", gap: size.spacing.xs }}>
           <View
@@ -55,15 +104,21 @@ export default function LoginScreen() {
           >
             <Label>Password</Label>
           </View>
-          <Input placeholder="Masukan password anda" secureTextEntry={true} />
+          <Input
+            placeholder="Masukan password anda"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={setPassword}
+          />
         </View>
       </KeyboardAvoidingView>
 
       <View style={{ width: "100%", gap: size.spacing.lg }}>
         <Button
-          onPress={() => router.push("/(tabs)")}
-          label="Login"
+          onPress={handleLogin}
+          label={loading ? "Loading..." : "Masuk"}
           color={colors.primary}
+          loading={loading}
         />
       </View>
     </SafeAreaView>

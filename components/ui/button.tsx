@@ -4,6 +4,7 @@ import { Image } from "expo-image";
 import type { LucideIcon, LucideProps } from "lucide-react-native";
 import React from "react";
 import {
+  ActivityIndicator,
   StyleProp,
   StyleSheet,
   Text,
@@ -22,6 +23,7 @@ type ButtonProps = {
   iconProps?: Partial<LucideProps>;
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
+  loading?: boolean;
 };
 
 export default function Button({
@@ -35,6 +37,7 @@ export default function Button({
   iconProps,
   onPress = () => {},
   style,
+  loading = false
 }: ButtonProps) {
   return (
     <TouchableOpacity
@@ -50,6 +53,9 @@ export default function Button({
         style,
       ]}
     >
+      {loading ? (
+        <ActivityIndicator color={labelColor} />
+      ) : null}
       {Icon ? (
         <Icon
           color={iconProps?.color ?? labelColor}
