@@ -1,10 +1,18 @@
+import { HelloWave } from "@/components/hello-wave";
 import Header from "@/components/ui/blocks/header";
-import PostCard from "@/components/ui/cards/post-card";
+import Card from "@/components/ui/card";
+import LaundryCard from "@/components/ui/cards/LaundryCard";
 import { colors } from "@/constants/color";
 import * as size from "@/constants/size";
 import { styles } from "@/constants/styles";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type ApiPost = {
@@ -34,22 +42,22 @@ function getGreetingByTime(): string {
   const hour = new Date().getHours();
 
   if (hour < 12) {
-    return "Good morning";
+    return "Selamat pagi";
   }
 
-  if (hour < 17) {
-    return "Good afternoon";
+  if (hour < 15) {
+    return "Selamat siang";
+  }
+
+  if (hour < 18) {
+    return "Selamat sore";
   }
 
   if (hour < 21) {
-    return "Good evening";
+    return "Selamat malam";
   }
 
-  return "Good night";
-}
-
-function getGreetingText(): string {
-  return `${getGreetingByTime()}!`;
+  return "Selamat malam";
 }
 
 export default function HomeScreen() {
@@ -59,7 +67,7 @@ export default function HomeScreen() {
   const getPosts = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://172.16.0.70:8000/api/posts");
+      const response = await fetch("http://172.16.0.53:8000/api/transaksi");
       const json: ApiResponse = await response.json();
       console.log("API Response:", json);
       console.log("Data:", json.data);
@@ -79,11 +87,81 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <Header />
+      <ScrollView>
+        <View style={styles.container}>
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: size.spacing.md,
+              }}
+            >
+              <HelloWave />
+              <View>
+                <Text
+                  style={{
+                    color: colors.foreground,
+                    fontSize: size.fontSize.sm,
+                  }}
+                >
+                  {getGreetingByTime()},
+                </Text>
+                <Text style={styles.title}>Bagas Firmansyah</Text>
+              </View>
+            </View>
+          </View>
 
-      <View style={styles.container}>
-        <Text style={styles.headerText}>{getGreetingText()}</Text>
-      </View>
+          <View style={{ gap: size.spacing.sm }}>
+            <View style={{ flexDirection: "row", gap: size.spacing.sm }}>
+              <Card>
+                <Text
+                  style={{ fontSize: size.fontSize["2xl"], fontWeight: 500 }}
+                >
+                  1
+                </Text>
+                <Text style={styles.subtitle}>Menunggu dibayar</Text>
+              </Card>
+              <Card>
+                <Text
+                  style={{ fontSize: size.fontSize["2xl"], fontWeight: 500 }}
+                >
+                  1
+                </Text>
+                <Text style={styles.subtitle}>Sedang diproses</Text>
+              </Card>
+            </View>
+            <View style={{ flexDirection: "row", gap: size.spacing.sm }}>
+              <Card>
+                <Text
+                  style={{ fontSize: size.fontSize["2xl"], fontWeight: 500 }}
+                >
+                  1
+                </Text>
+                <Text style={styles.subtitle}>Siap diambil</Text>
+              </Card>
+              <Card>
+                <Text
+                  style={{ fontSize: size.fontSize["2xl"], fontWeight: 500 }}
+                >
+                  1
+                </Text>
+                <Text style={styles.subtitle}>Selesai laundry</Text>
+              </Card>
+            </View>
+          </View>
+
+          <Text style={styles.title}>Cucian saat ini</Text>
+          <View style={{ gap: size.spacing.sm }}>
+            <LaundryCard service="Cuci kering" qty={3} unit="kg" payment_status="Menunggu dibayar" laundry_status="Dicuci" />
+            <LaundryCard service="Cuci kering" qty={3} unit="kg" payment_status="Menunggu dibayar" laundry_status="Dicuci" />
+            <LaundryCard service="Cuci kering" qty={3} unit="kg" payment_status="Menunggu dibayar" laundry_status="Dicuci" />
+            <LaundryCard service="Cuci kering" qty={3} unit="kg" payment_status="Menunggu dibayar" laundry_status="Dicuci" />
+            <LaundryCard service="Cuci kering" qty={3} unit="kg" payment_status="Menunggu dibayar" laundry_status="Dicuci" />
+            <LaundryCard service="Cuci kering" qty={3} unit="kg" payment_status="Menunggu dibayar" laundry_status="Dicuci" />
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

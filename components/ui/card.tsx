@@ -21,9 +21,10 @@ export default function Card({ color = colors.card, borderColor = colors.border,
 
 const styles = StyleSheet.create({
   card: {
+    flex: 1,
     width: "100%",
     justifyContent: "center",
-    gap: size.spacing.md,
+    gap: size.spacing.sm,
     backgroundColor: colors.card,
     borderRadius: size.radius.xl,
     padding: size.spacing.lg,

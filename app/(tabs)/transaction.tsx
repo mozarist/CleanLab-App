@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function SearchScreen() {
+export default function Transaction() {
   return (
     <View>
-      <Text>SearchScreen</Text>
+      <Text>Transaction</Text>
     </View>
   )
 }

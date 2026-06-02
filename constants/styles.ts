@@ -31,6 +31,15 @@ export const styles = StyleSheet.create({
     letterSpacing: -1,
     color: colors.primary,
   },
+  title: {
+    fontSize: size.fontSize.lg,
+    fontWeight: 500,
+    color: colors.foreground,
+  },
+  subtitle: {
+    fontSize: size.fontSize.sm,
+    color: colors.mutedForeground,
+  },
   bottomTab: {
     flexDirection: "row",
     alignItems: "center",

@@ -71,7 +71,7 @@ export default function ProfileScreen() {
       <View style={localStyles.headerContainer}>
         <View style={localStyles.avatarRow}>
           <View style={localStyles.avatarCircle}>
-            <User size={28} color={colors.muted} />
+            <User size={28} color={colors.mutedForeground} />
           </View>
 
           <View style={localStyles.userInfo}>
@@ -157,7 +157,7 @@ const localStyles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 72,
-    backgroundColor: colors.muted + "20",
+    backgroundColor: colors.mutedForeground + "20",
     alignItems: "center",
     justifyContent: "center",
   },
