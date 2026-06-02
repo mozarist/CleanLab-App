@@ -3,7 +3,7 @@ import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { House, Compass, CircleUser, Search } from 'lucide-react-native';
+import { House, Compass, CircleUser, ScrollText } from 'lucide-react-native';
 import { colors } from '@/constants/color';
 
 export default function TabLayout() {
@@ -13,7 +13,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.muted,
+        tabBarInactiveTintColor: colors.mutedForeground,
         tabBarStyle: {
           position: 'absolute',
           backgroundColor: colors.card,
@@ -33,17 +33,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
-        options={{
-          title: '',
-          tabBarIcon: ({ color }) => <Compass size={32} strokeWidth={1.7} color={color} />,
-        }}
-      />
-      <Tabs.Screen
         name="search"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <Search size={32} strokeWidth={1.7} color={color} />,
+          tabBarIcon: ({ color }) => <ScrollText size={32} strokeWidth={1.7} color={color} />,
         }}
       />
       <Tabs.Screen

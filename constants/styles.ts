@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    backgroundColor: colors.card,
+    backgroundColor: colors.background,
   },
   container: {
     flexGrow: 1,
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: colors.card,
-    paddingHorizontal: size.spacing.xl,
+    paddingHorizontal: size.spacing.lg,
     paddingVertical: size.spacing.lg,
     borderBottomWidth: size.border.regular,
     borderColor: colors.border,
@@ -27,9 +27,9 @@ export const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: size.fontSize.xl,
-    fontWeight: 700,
+    fontWeight: 500,
     letterSpacing: -1,
-    color: colors.foreground,
+    color: colors.primary,
   },
   bottomTab: {
     flexDirection: "row",

@@ -3,7 +3,6 @@ import PostCard from "@/components/ui/cards/post-card";
 import { colors } from "@/constants/color";
 import * as size from "@/constants/size";
 import { styles } from "@/constants/styles";
-import LottieView from "lottie-react-native";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -30,6 +29,28 @@ type ApiPost = {
 type ApiResponse = {
   data: ApiPost[];
 };
+
+function getGreetingByTime(): string {
+  const hour = new Date().getHours();
+
+  if (hour < 12) {
+    return "Good morning";
+  }
+
+  if (hour < 17) {
+    return "Good afternoon";
+  }
+
+  if (hour < 21) {
+    return "Good evening";
+  }
+
+  return "Good night";
+}
+
+function getGreetingText(): string {
+  return `${getGreetingByTime()}!`;
+}
 
 export default function HomeScreen() {
   const [posts, setPosts] = useState<ApiPost[]>([]);
@@ -59,67 +80,10 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Header />
-      {isLoading && posts.length === 0 ? (
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: colors.background,
-          }}
-        >
-          <ActivityIndicator size="large" color={colors.primary} />
-        </View>
-      ) : (
-        <FlatList
-          data={posts}
-          renderItem={({ item }) => (
-            <PostCard
-              name={item.authentication}
-              coverUri={item.content}
-              caption={item.caption ?? "Post caption"}
-              status={item.tagline}
-              tags={item.hashtags ?? []}
-              likes={item.likes ?? 0}
-              reposts={item.reposts ?? 0}
-              comments={0}
-              location={item.location ?? "Location"}
-            />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-          onRefresh={getPosts}
-          refreshing={isLoading}
-          ListEmptyComponent={
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingHorizontal: size.spacing.xl,
-              }}
-            >
-              <LottieView
-                source={require("@/assets/animations/not-found.json")}
-                autoPlay
-                loop
-                style={{ width: 200, height: 200 }}
-              />
 
-              <Text
-                style={{
-                  color: colors.muted,
-                  fontSize: size.fontSize.md,
-                  textAlign: "center",
-                }}
-              >
-                Belum ada postingan. Jadilah yang pertama untuk bersuara!
-              </Text>
-            </View>
-          }
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.container}
-        />
-      )}
+      <View style={styles.container}>
+        <Text style={styles.headerText}>{getGreetingText()}</Text>
+      </View>
     </SafeAreaView>
   );
 }

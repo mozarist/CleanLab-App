@@ -16,9 +16,9 @@ export default function Label({ children, color = colors.text }: LabelProps) {
 
 const styles = StyleSheet.create({
   label: {
-    color: colors.text,
+    color: colors.mutedForeground,
     fontSize: size.fontSize.xs,
-    fontWeight: 500,
+    fontWeight: 400,
     letterSpacing: 0.5,
   }
 });

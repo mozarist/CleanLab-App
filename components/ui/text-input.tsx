@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     borderRadius: size.radius.full,
     paddingHorizontal: size.spacing.lg,
-    paddingVertical: size.spacing.xs,
+    paddingVertical: size.spacing.sm,
   },
   textInput: {
     width: "100%",
