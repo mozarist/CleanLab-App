@@ -16,16 +16,16 @@ export default function TabLayout() {
         tabBarInactiveTintColor: colors.mutedForeground,
         tabBarStyle: {
           position: 'absolute',
+          bottom: 50,
           backgroundColor: colors.card,
           borderWidth: 1,
           borderColor: colors.border,
           borderRadius: 9999,
           width: '70%',
           height: 56,
-          padding: 8,
+          paddingTop: 10,
           paddingHorizontal: 24,
-          margin: 24,
-          marginHorizontal: 'auto',
+          marginHorizontal: '15%',
         },
         headerShown: false,
         tabBarButton: HapticTab,
@@ -34,21 +34,21 @@ export default function TabLayout() {
         name="index"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <House size={32} strokeWidth={1.7} color={color} />,
+          tabBarIcon: ({ color }) => <House size={32} strokeWidth={1.5} color={color} />,
         }}
       />
       <Tabs.Screen
         name="transaction"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <ScrollText size={32} strokeWidth={1.7} color={color} />,
+          tabBarIcon: ({ color }) => <ScrollText size={32} strokeWidth={1.5} color={color} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <CircleUser size={32} strokeWidth={1.7} color={color} />,
+          tabBarIcon: ({ color }) => <CircleUser size={32} strokeWidth={1.5} color={color} />,
         }}
       />
     </Tabs>

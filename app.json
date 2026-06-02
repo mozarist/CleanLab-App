@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "StudentVoice",
-    "slug": "StudentVoice",
+    "name": "CleanLab",
+    "slug": "CleanLab",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "studentvoice",
+    "scheme": "cleanlab",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

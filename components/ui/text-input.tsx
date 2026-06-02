@@ -25,7 +25,7 @@ export default function Input({
       {icon && <View>{icon}</View>}
       <TextInput
         placeholder={placeholder}
-        placeholderTextColor={colors.muted}
+        placeholderTextColor={colors.mutedForeground}
         style={styles.textInput}
         secureTextEntry={secureTextEntry}
         value={value}
@@ -46,10 +46,11 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     borderRadius: size.radius.full,
     paddingHorizontal: size.spacing.lg,
-    paddingVertical: size.spacing.sm,
+    paddingVertical: size.spacing.xs,
   },
   textInput: {
     width: "100%",
     fontSize: 16,
+    color: colors.primary,
   },
 });
