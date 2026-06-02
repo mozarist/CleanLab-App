@@ -40,6 +40,11 @@ export const styles = StyleSheet.create({
     fontSize: size.fontSize.sm,
     color: colors.mutedForeground,
   },
+  summaryTitle: {
+    color: colors.primary,
+    fontSize: size.fontSize['2xl'],
+    fontWeight: 600,
+  },
   bottomTab: {
     flexDirection: "row",
     alignItems: "center",

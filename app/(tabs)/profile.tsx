@@ -14,102 +14,87 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-type ApiPost = {
-  id: number;
-  authentication: string;
-  content: string;
-  caption: string | null;
-  tagline:
-    | "senang"
-    | "sedih"
-    | "marah"
-    | "tenang"
-    | "terkejut"
-    | "takut"
-    | null;
-  hashtags: string[] | null;
-  likes: number | null;
-  reposts: number | null;
-  location: string | null;
-};
-
-type ApiResponse = {
-  data: ApiPost[];
-};
-
-const USERNAME = "mozarist";
+import { router } from "expo-router";
+import * as SecureStore from "expo-secure-store";
+import { api } from "@/services/api";
 
 export default function ProfileScreen() {
-  const [posts, setPosts] = useState<ApiPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  const getPosts = async () => {
-    setIsLoading(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function handleLogout() {
+
     try {
-      const response = await fetch("http://172.16.0.70:8000/api/posts");
-      const json: ApiResponse = await response.json();
-      const all = Array.isArray(json.data) ? json.data : [];
-      const mine = all.filter((p) => p.authentication === USERNAME);
-      setPosts(mine);
+
+      setIsLoading(true);
+
+      const token =
+        await SecureStore.getItemAsync(
+          "token"
+        );
+
+      await api.post(
+        "/logout",
+        {},
+        {
+          headers: {
+            Authorization:
+              `Bearer ${token}`,
+          },
+        }
+      );
+
     } catch (error) {
-      console.error("Fetch Error:", error);
-      setPosts([]);
+
+      console.log(
+        "Logout error:",
+        error
+      );
+
     } finally {
+
+      await SecureStore.deleteItemAsync(
+        "token"
+      );
+
+      router.replace(
+        "/login"
+      );
+
       setIsLoading(false);
     }
-  };
-
-  useEffect(() => {
-    getPosts();
-  }, []);
+  }
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <Header />
-
-      <View style={localStyles.headerContainer}>
+      <View style={styles.container}>
         <View style={localStyles.avatarRow}>
           <View style={localStyles.avatarCircle}>
-            <User size={28} color={colors.mutedForeground} />
+            <User size={size.iconSize['4xl']} color={colors.primary + 50} />
           </View>
 
-          <View style={localStyles.userInfo}>
-            <Text style={localStyles.username}>mozarist</Text>
-            <Text style={localStyles.email}>mozarist@gmail.com</Text>
-            <Button
-              label="Edit Profile"
-              rounded={size.radius.full}
-              color={colors.secondary}
-              labelColor={colors.foreground}
-              onPress={() => {}}
-              style={{ marginTop: size.spacing.sm }}
-            />
-          </View>
+        </View>
+        <View style={{ alignItems: "center" }}>
+          <Text style={localStyles.username}>Bagas Firmansyah</Text>
+          <Text style={localStyles.email}>bagas.firmansyah@gmail.com</Text>
         </View>
 
         <Text style={localStyles.bio}>
-          Full stack developer — building web & mobile products. Loves clean
-          code, testing, and good UX.
+          Jl. Soekarno Hatta No. 74, Palembang, Sumatera Selatan
         </Text>
 
-        <View style={localStyles.statsRow}>
-          <View style={localStyles.statItem}>
-            <Text style={localStyles.statNumber}>{posts.length}</Text>
-            <Text style={localStyles.statLabel}>Posts</Text>
-          </View>
-          <View style={localStyles.statItem}>
-            <Text style={localStyles.statNumber}>0</Text>
-            <Text style={localStyles.statLabel}>Followers</Text>
-          </View>
-          <View style={localStyles.statItem}>
-            <Text style={localStyles.statNumber}>0</Text>
-            <Text style={localStyles.statLabel}>Following</Text>
-          </View>
-        </View>
+        <Button
+          label={
+            isLoading
+              ? "Logging out..."
+              : "Log out"
+          }
+          color={colors.destructive}
+          onPress={handleLogout}
+        />
       </View>
 
-      {isLoading && posts.length === 0 ? (
+      {/* {isLoading && posts.length === 0 ? (
         <View style={localStyles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.primary} />
         </View>
@@ -138,7 +123,8 @@ export default function ProfileScreen() {
             <Text style={localStyles.empty}>Belum ada postingan</Text>
           }
         />
-      )}
+      )} */}
+
     </SafeAreaView>
   );
 }
@@ -149,32 +135,29 @@ const localStyles = StyleSheet.create({
     gap: size.spacing.md,
   },
   avatarRow: {
-    flexDirection: "row",
     gap: size.spacing.md,
     alignItems: "center",
   },
   avatarCircle: {
-    width: 72,
-    height: 72,
+    width: 128,
+    height: 128,
     borderRadius: 72,
     backgroundColor: colors.mutedForeground + "20",
     alignItems: "center",
     justifyContent: "center",
   },
-  userInfo: {
-    flex: 1,
-  },
   username: {
     fontSize: size.fontSize.lg,
     color: colors.foreground,
-    fontWeight: "700",
+    fontWeight: "500",
   },
   email: {
     fontSize: size.fontSize.sm,
-    color: colors.muted,
+    color: colors.mutedForeground,
   },
   bio: {
-    color: colors.text,
+    color: colors.mutedForeground,
+    textAlign: "center",
     fontSize: size.fontSize.md,
   },
   statsRow: {
@@ -192,7 +175,7 @@ const localStyles = StyleSheet.create({
   },
   statLabel: {
     fontSize: size.fontSize.xs,
-    color: colors.muted,
+    color: colors.mutedForeground,
   },
   loadingContainer: {
     flex: 1,
