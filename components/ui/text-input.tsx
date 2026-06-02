@@ -10,6 +10,9 @@ type TextInputProps = {
   radius?: string | number;
   icon?: React.ReactNode;
   onChangeText?: (text: string) => void;
+  autoCapitalize?: "none" | "words" | "sentences" | "characters";
+  autoComplete?: "off" | "username" | "password" | "email" | "name" | "tel" | "street-address" | "postal-code" | "cc-number" | "cc-exp" | "cc-csc" | "cc-exp-month" | "cc-exp-year";
+  keyboardType?: "default" | "number-pad" | "decimal-pad" | "email-address" | "phone-pad";
 };
 
 export default function Input({
@@ -19,11 +22,17 @@ export default function Input({
   radius = size.radius.full,
   icon,
   onChangeText,
+  autoCapitalize = "none",
+  autoComplete = "off",
+  keyboardType = "default"
 }: TextInputProps) {
   return (
     <View style={[styles.inputContainer, { borderRadius: radius }]}>
       {icon && <View>{icon}</View>}
       <TextInput
+      keyboardType={keyboardType}
+      autoCapitalize={autoCapitalize}
+      autoComplete={autoComplete}
         placeholder={placeholder}
         placeholderTextColor={colors.mutedForeground}
         style={styles.textInput}

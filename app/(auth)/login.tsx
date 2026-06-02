@@ -9,6 +9,7 @@ import Label from "@/components/ui/label";
 import { WashingMachine } from "lucide-react-native";
 import { login } from "@/services/auth";
 import { useState } from "react";
+import * as SecureStore from "expo-secure-store";
 
 export default function LoginScreen() {
   const [email, setEmail] =
@@ -20,39 +21,43 @@ export default function LoginScreen() {
   const [loading, setLoading] =
     useState(false);
 
+  const [error, setError] = useState("");
+
   async function handleLogin() {
-    try {
+  try {
 
-      setLoading(true);
+    setLoading(true);
+    setError("");
 
-      const data =
-        await login(
-          email,
-          password
-        );
+    const data = await login(
+      email,
+      password
+    );
 
-      console.log(data);
+    console.log(data);
 
-      Alert.alert(
-        "Success",
-        "Logged in"
-      );
+    await SecureStore.setItemAsync(
+      "token",
+      data.token
+    );
+    
+    router.replace("/(tabs)");
 
-    } catch (error) {
+  } catch (err: any) {
 
-      console.log(error);
+    console.log(err);
 
-      Alert.alert(
-        "Error",
-        "Login failed"
-      );
+    setError(
+      err?.response?.data?.message ??
+      "Login failed"
+    );
 
-    } finally {
+  } finally {
 
-      setLoading(false);
+    setLoading(false);
 
-    }
   }
+}
 
   return (
     <SafeAreaView
@@ -90,6 +95,8 @@ export default function LoginScreen() {
           <Label>Email</Label>
           <Input
             placeholder="Masukan email yang sudah terdaftar"
+            autoComplete="email"
+            keyboardType="email-address"
             value={email}
             onChangeText={setEmail}
           />
@@ -106,6 +113,7 @@ export default function LoginScreen() {
           </View>
           <Input
             placeholder="Masukan password anda"
+            autoComplete="password"
             secureTextEntry={true}
             value={password}
             onChangeText={setPassword}
@@ -120,6 +128,17 @@ export default function LoginScreen() {
           color={colors.primary}
           loading={loading}
         />
+        {error ? (
+          <Text
+            style={{
+              fontSize: size.fontSize.xs,
+              color: colors.destructive,
+              textAlign: "center",
+            }}
+          >
+            {error}
+          </Text>
+        ) : null}
       </View>
     </SafeAreaView>
   );
